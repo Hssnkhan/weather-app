@@ -11,18 +11,6 @@ class ApiManager {
   static const BaseWeatherURL =
       "https://api.openweathermap.org/data/2.5/weather"; //?q={city name}&appid={API key}
 
-  static getUser() async {
-    try {
-      var response = await http.get(Uri.parse("$BaseURL/users"));
-      // log(response.body);
-      var orignalRes = jsonDecode(response.body);
-      // print(orignalRes);
-      return orignalRes;
-    } catch (e) {
-      print(e);
-    }
-  }
-
   static getWeatherByCity(city) async {
     var url = "$BaseWeatherURL?q=$city&appid=$ApiKey";
 
