@@ -26,10 +26,12 @@ class CityScreen extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
+                 if(cityController.text.isNotEmpty){
+                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (_) => WeatherScreen(cityController.text)));
+                 }
                 },
                 child: Text("Search Weather"))
           ],
