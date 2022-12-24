@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import "package:intl/intl.dart";
 import 'package:original_app_weather/model/weather_detail_model.dart';
+import 'package:original_app_weather/view/widgets.dart';
 
 import '../controller/api_manager.dart';
 import 'cities_screen.dart';
@@ -59,7 +60,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText(
+                     selectedWeather == null ?customIndicator()  :  CustomText(
                         text: "${tempConverter(selectedWeather!.main!.temp)}°C",
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -121,6 +122,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           ],
         ),
       ),
+    
       appBar: AppBar(
         title: Text(
           "Weather & radar",
@@ -141,12 +143,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ],
       ),
       body: selectedWeather == null
-          ? SizedBox(
-              height: 100,
-              width: 100,
-              child: CircularProgressIndicator.adaptive(
-                backgroundColor: Colors.pink,
-              ))
+          ? customIndicator()
           : Column(
               children: [
                 SizedBox(
@@ -173,12 +170,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomImage(
-                          size: size.height * 0.40,
-                          url: "",
-                        ),
+                        // CustomImage(
+                        //   size: size.height * 0.40,
+                        //   url: "",
+                          
+                        // ),
                         SizedBox(
-                          height: 20,
+                          height: 200,
                         ),
                         Row(
                           children: [
@@ -327,7 +325,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
   }
 
   imageSelector(image) {
-    print(image);
+    // print(image);
+    // Smoke
+    // smoke
     var finalImage;
     var weatherImage = image.toString().toLowerCase();
     if (weatherImage == "cloud" || weatherImage == "Cloud") {
@@ -341,7 +341,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
     } else {
       finalImage = "Weather.jpg";
     }
-
     return finalImage;
   }
 
